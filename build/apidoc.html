@@ -61,12 +61,114 @@
 
     <li class="apidocModuleLi"><a href="#apidoc.module.gulp-wrap">module gulp-wrap</a><ol>
 
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.gulp-wrap.gulp-wrap">
+            function <span class="apidocSignatureSpan"></span>gulp-wrap
+            <span class="apidocSignatureSpan">(opts, data, options)</span>
+            </a>
+
+        </li>
+
     </ol></li>
 
 </ol></div>
 
 <div class="apidocSectionDiv">
 <h1><a href="#apidoc.module.gulp-wrap" id="apidoc.module.gulp-wrap">module gulp-wrap</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.gulp-wrap.gulp-wrap" id="apidoc.element.gulp-wrap.gulp-wrap">
+        function <span class="apidocSignatureSpan"></span>gulp-wrap
+        <span class="apidocSignatureSpan">(opts, data, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function gulpWrap(opts, data, options) {
+  var promise;
+  if (typeof opts === &#x27;object&#x27;) {
+    if (typeof opts.src !== &#x27;string&#x27;) {
+      throw new PluginError(PLUGIN_NAME, new TypeError(&#x27;Expecting `src` option.&#x27;));
+    }
+    promise = readFile(opts.src, &#x27;utf8&#x27;);
+  } else {
+    if (typeof opts !== &#x27;string&#x27; &#x26;&#x26; typeof opts !== &#x27;function&#x27;) {
+      throw new PluginError(PLUGIN_NAME, &#x27;Template must be a string or a function.&#x27;);
+    }
+
+    promise = ES6Promise.resolve(opts);
+  }
+
+  return through.obj(function gulpWrapTransform(file, enc, cb) {
+    function compile(contents, done) {
+      if (typeof data === &#x27;function&#x27;) {
+        data = data.call(null, file);
+      }
+
+      if (typeof options === &#x27;function&#x27;) {
+        options = options.call(null, file);
+      }
+
+      data = data || {};
+      options = options || {};
+
+      if (!options.engine) {
+        options.engine = &#x27;lodash&#x27;;
+      }
+
+      // attempt to parse the file contents for JSON or YAML files
+      if (options.parse !== false) {
+        var ext = path.extname(file.path).toLowerCase();
+
+        tryit(function() {
+          if (ext === &#x27;.json&#x27;) {
+            contents = JSON.parse(contents);
+          } else if (ext === &#x27;.yml&#x27; || ext === &#x27;.yaml&#x27;) {
+            contents = require(&#x27;js-yaml&#x27;).safeLoad(contents);
+          }
+        }, function(err) {
+          if (!err) {
+            return;
+          }
+          throw new PluginError(PLUGIN_NAME, &#x27;Error parsing &#x27; + file.path);
+        });
+      }
+
+      var newData = extend({file: file}, options, data, file.data, {contents: contents});
+
+      promise.then(function(template) {
+        if (typeof template === &#x27;function&#x27;) {
+          template = template(newData);
+        }
+
+        consolidate[options.engine].render(template, newData, function(err, result) {
+          if (err) {
+            done(new PluginError(PLUGIN_NAME, err));
+            return;
+          }
+          done(null, new Buffer(result));
+        });
+      }, done).catch(done);
+    }
+
+    var run = new VinylBufferStream(compile);
+    var self = this;
+
+    run(file, function(err, contents) {
+      if (err) {
+        self.emit(&#x27;error&#x27;, err);
+      } else {
+        file.contents = contents;
+        self.push(file);
+      }
+      cb();
+    });
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
 
 </div>
 

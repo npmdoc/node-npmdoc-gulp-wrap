@@ -1,4 +1,4 @@
-<div class="apidocDiv">
+<html><head></head><body><div class="apidocDiv">
 <style>
 /*csslint
 */
@@ -47,17 +47,10 @@
 }
 </style>
 <h1>api documentation for
-    <a
-
-        href="https://github.com/adamayres/gulp-wrap#readme"
-
-    >gulp-wrap (v0.13.0)</a>
+    <a href="https://github.com/adamayres/gulp-wrap#readme">gulp-wrap (v0.13.0)</a>
 </h1>
 <h4>A gulp plugin to wrap the stream contents with a template.</h4>
-<div class="apidocSectionDiv"><a
-    href="#apidoc.tableOfContents"
-    id="apidoc.tableOfContents"
-><h1>table of contents</h1></a><ol>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
 
     <li class="apidocModuleLi"><a href="#apidoc.module.gulp-wrap">module gulp-wrap</a><ol>
 
@@ -87,14 +80,14 @@
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function gulpWrap(opts, data, options) {
   var promise;
-  if (typeof opts === &#x27;object&#x27;) {
-    if (typeof opts.src !== &#x27;string&#x27;) {
-      throw new PluginError(PLUGIN_NAME, new TypeError(&#x27;Expecting `src` option.&#x27;));
+  if (typeof opts === 'object') {
+    if (typeof opts.src !== 'string') {
+      throw new PluginError(PLUGIN_NAME, new TypeError('Expecting `src` option.'));
     }
-    promise = readFile(opts.src, &#x27;utf8&#x27;);
+    promise = readFile(opts.src, 'utf8');
   } else {
-    if (typeof opts !== &#x27;string&#x27; &#x26;&#x26; typeof opts !== &#x27;function&#x27;) {
-      throw new PluginError(PLUGIN_NAME, &#x27;Template must be a string or a function.&#x27;);
+    if (typeof opts !== 'string' &amp;&amp; typeof opts !== 'function') {
+      throw new PluginError(PLUGIN_NAME, 'Template must be a string or a function.');
     }
 
     promise = ES6Promise.resolve(opts);
@@ -102,11 +95,11 @@
 
   return through.obj(function gulpWrapTransform(file, enc, cb) {
     function compile(contents, done) {
-      if (typeof data === &#x27;function&#x27;) {
+      if (typeof data === 'function') {
         data = data.call(null, file);
       }
 
-      if (typeof options === &#x27;function&#x27;) {
+      if (typeof options === 'function') {
         options = options.call(null, file);
       }
 
@@ -114,7 +107,7 @@
       options = options || {};
 
       if (!options.engine) {
-        options.engine = &#x27;lodash&#x27;;
+        options.engine = 'lodash';
       }
 
       // attempt to parse the file contents for JSON or YAML files
@@ -122,23 +115,23 @@
         var ext = path.extname(file.path).toLowerCase();
 
         tryit(function() {
-          if (ext === &#x27;.json&#x27;) {
+          if (ext === '.json') {
             contents = JSON.parse(contents);
-          } else if (ext === &#x27;.yml&#x27; || ext === &#x27;.yaml&#x27;) {
-            contents = require(&#x27;js-yaml&#x27;).safeLoad(contents);
+          } else if (ext === '.yml' || ext === '.yaml') {
+            contents = require('js-yaml').safeLoad(contents);
           }
         }, function(err) {
           if (!err) {
             return;
           }
-          throw new PluginError(PLUGIN_NAME, &#x27;Error parsing &#x27; + file.path);
+          throw new PluginError(PLUGIN_NAME, 'Error parsing ' + file.path);
         });
       }
 
       var newData = extend({file: file}, options, data, file.data, {contents: contents});
 
       promise.then(function(template) {
-        if (typeof template === &#x27;function&#x27;) {
+        if (typeof template === 'function') {
           template = template(newData);
         }
 
@@ -157,7 +150,7 @@
 
     run(file, function(err, contents) {
       if (err) {
-        self.emit(&#x27;error&#x27;, err);
+        self.emit('error', err);
       } else {
         file.contents = contents;
         self.push(file);
@@ -178,3 +171,4 @@
     ]
 </div>
 </div>
+</body></html>
