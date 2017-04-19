@@ -1,9 +1,14 @@
-# api documentation for  [gulp-wrap (v0.13.0)](https://github.com/adamayres/gulp-wrap#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-gulp-wrap.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-gulp-wrap) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-gulp-wrap.svg)](https://travis-ci.org/npmdoc/node-npmdoc-gulp-wrap)
+# npmdoc-gulp-wrap
+
+#### api documentation for  [gulp-wrap (v0.13.0)](https://github.com/adamayres/gulp-wrap#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-gulp-wrap.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-gulp-wrap) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-gulp-wrap.svg)](https://travis-ci.org/npmdoc/node-npmdoc-gulp-wrap)
+
 #### A gulp plugin to wrap the stream contents with a template.
 
-[![NPM](https://nodei.co/npm/gulp-wrap.png?downloads=true)](https://www.npmjs.com/package/gulp-wrap)
+[![NPM](https://nodei.co/npm/gulp-wrap.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/gulp-wrap)
 
-[![apidoc](https://npmdoc.github.io/node-npmdoc-gulp-wrap/build/screenCapture.buildNpmdoc.browser._2Fhome_2Ftravis_2Fbuild_2Fnpmdoc_2Fnode-npmdoc-gulp-wrap_2Ftmp_2Fbuild_2Fapidoc.html.png)](https://npmdoc.github.io/node-npmdoc-gulp-wrap/build/apidoc.html)
+- [https://npmdoc.github.io/node-npmdoc-gulp-wrap/build/apidoc.html](https://npmdoc.github.io/node-npmdoc-gulp-wrap/build/apidoc.html)
+
+[![apidoc](https://npmdoc.github.io/node-npmdoc-gulp-wrap/build/screenCapture.buildCi.browser.%252Ftmp%252Fbuild%252Fapidoc.html.png)](https://npmdoc.github.io/node-npmdoc-gulp-wrap/build/apidoc.html)
 
 ![npmPackageListing](https://npmdoc.github.io/node-npmdoc-gulp-wrap/build/screenCapture.npmPackageListing.svg)
 
@@ -18,7 +23,6 @@
 {
     "author": {
         "name": "Adam Ayres",
-        "email": "magicaj@gmail.com",
         "url": "https://github.com/adamayres"
     },
     "bugs": {
@@ -27,7 +31,6 @@
     "contributors": [
         {
             "name": "Shinnosuke Watanabe",
-            "email": "snnskwtnb@gmail.com",
             "url": "https://github.com/shinnn"
         }
     ],
@@ -90,17 +93,14 @@
     ],
     "maintainers": [
         {
-            "name": "adamayres",
-            "email": "magicaj@gmail.com"
+            "name": "adamayres"
         },
         {
-            "name": "shinnn",
-            "email": "snnskwtnb@gmail.com"
+            "name": "shinnn"
         }
     ],
     "name": "gulp-wrap",
     "optionalDependencies": {},
-    "readme": "ERROR: No README data found!",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/adamayres/gulp-wrap.git"
@@ -114,16 +114,6 @@
     "version": "0.13.0"
 }
 ```
-
-
-
-# <a name="apidoc.tableOfContents"></a>[table of contents](#apidoc.tableOfContents)
-
-#### [module gulp-wrap](#apidoc.module.gulp-wrap)
-
-
-
-# <a name="apidoc.module.gulp-wrap"></a>[module gulp-wrap](#apidoc.module.gulp-wrap)
 
 
 
